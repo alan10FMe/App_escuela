@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "120637764397-f5c2vs5hfnupadl0kn3tsj97914qf5nl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.escuelapp",
+            "certificate_hash": "808E2430DAA124E4B8FB07797E2DCEC515205FFD"
+          }
+        },
+        {
           "client_id": "120637764397-0j4fsv3iifkungbvuidk3caoh4ict1bl.apps.googleusercontent.com",
           "client_type": 3
         }
