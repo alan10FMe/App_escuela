@@ -1,0 +1,50 @@
+{
+  "project_info": {
+    "project_number": "120637764397",
+    "firebase_url": "https://escuelaapp-c8746.firebaseio.com",
+    "project_id": "escuelaapp-c8746",
+    "storage_bucket": "escuelaapp-c8746.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120637764397:android:1bf5dd9a0bf3c8c3",
+        "android_client_info": {
+          "package_name": "com.escuelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120637764397-f5c2vs5hfnupadl0kn3tsj97914qf5nl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.escuelapp",
+            "certificate_hash": "808E2430DAA124E4B8FB07797E2DCEC515205FFD"
+          }
+        },
+        {
+          "client_id": "120637764397-0j4fsv3iifkungbvuidk3caoh4ict1bl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2CQl1qb5lZ3MJ7L22GH5XGDMOO7FmJOA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
