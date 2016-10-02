@@ -1,4 +1,4 @@
-package com.escuelapp.escuelaapp;
+package com.escuelapp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
