@@ -8,19 +8,29 @@ import android.preference.PreferenceManager;
  */
 public class Utility {
 
-    private static final String USER_UID = "user_uid";
-
     public static void saveUserUid(Context context, String userUid) {
         if (userUid != null) {
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putString(USER_UID, userUid).commit();
+            PreferenceManager.getDefaultSharedPreferences(context).edit()
+                    .putString(Constants.USER_UID, userUid).commit();
         }
     }
 
     public static String getUserUid(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(USER_UID, null);
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.USER_UID, null);
     }
 
     public static void deleteUserUid(Context context) {
-        PreferenceManager.getDefaultSharedPreferences(context).edit().remove(USER_UID).commit();
+        PreferenceManager.getDefaultSharedPreferences(context).edit().remove(Constants.USER_UID).commit();
+    }
+
+    public static void saveUserRole(Context context, int role) {
+        if (role > 0) {
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(Constants.USER_ROLE, role).commit();
+        }
+    }
+
+    public static int getUserRole(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getInt(Constants.USER_ROLE, Constants.ROLE_NO_ROLE);
     }
 }

@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ((TextView) findViewById(R.id.user_uid_text)).setText(Utility.getUserUid(this));
+        ((TextView) findViewById(R.id.user_uid_text))
+                .setText("UID:" + Utility.getUserUid(this) + " ROL:" + Utility.getUserRole(this));
     }
 }
