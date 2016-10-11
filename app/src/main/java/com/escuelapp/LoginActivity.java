@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -12,8 +11,7 @@ import android.widget.Toast;
 
 import com.escuelapp.database.DatabaseAccess;
 import com.escuelapp.model.BaseModel;
-import com.escuelapp.model.Student;
-import com.escuelapp.model.Teacher;
+import com.escuelapp.model.User;
 import com.escuelapp.utility.Constants;
 import com.escuelapp.utility.Utility;
 import com.google.android.gms.auth.api.Auth;
@@ -37,8 +35,6 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
 
     private static final String TAG = "LoginActivity";
     private static final int CODE_SIGN_IN = 9001;
-    private AppCompatButton teacherButton;
-    private AppCompatButton studentButton;
     private SignInButton signInButton;
     private LinearLayout buttonsLinear;
     private FirebaseAuth firebaseAuth;
@@ -60,11 +56,6 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
     private void initializeView() {
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this);
-        teacherButton = (AppCompatButton) findViewById(R.id.teacher_button);
-        teacherButton.setOnClickListener(this);
-        studentButton = (AppCompatButton) findViewById(R.id.student_button);
-        studentButton.setOnClickListener(this);
-        buttonsLinear = (LinearLayout) findViewById(R.id.buttons_linear);
     }
 
     private void configureGoogleSignIn() {
@@ -87,7 +78,7 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                     if (firebaseUser != null) {
                         runMethod = false;
-                        if (Utility.getUserRole(context) == Constants.ROLE_NO_ROLE) {
+                        if (Utility.getUserUid(context) == null) {
                             createOrReadUser(firebaseUser);
                         } else {
                             openApp();
@@ -141,12 +132,6 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
             case R.id.sign_in_button:
                 signIn();
                 break;
-            case R.id.teacher_button:
-                createTeacher();
-                break;
-            case R.id.student_button:
-                createStudent();
-                break;
             default:
                 break;
         }
@@ -165,7 +150,7 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
 
     private void createOrReadUser(FirebaseUser firebaseUser) {
         showProgressDialog();
-        DatabaseAccess.findTeacherByUid(firebaseUser.getUid(), this);
+        DatabaseAccess.findUserByUid(firebaseUser.getUid(), this);
     }
 
     private void showErrorAuth() {
@@ -190,55 +175,27 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
     @Override
     public void onDatabaseResponse(BaseModel baseModel, String operationCode) {
         switch (operationCode) {
-            case Constants.SEARCH_TEACHER:
-                validateTeacher(baseModel);
-                break;
-            case Constants.SEARCH_STUDENT:
-                validateStudent(baseModel);
+            case Constants.SEARCH_USER:
+                validateUser(baseModel);
                 break;
             default:
                 break;
         }
     }
 
-    private void validateTeacher(BaseModel baseModel) {
-        if (baseModel != null) {
-            Utility.saveUserRole(context, Constants.ROLE_TEACHER);
-            hideProgressDialog();
-            openApp();
-        } else {
-            DatabaseAccess.findStudentByUid(firebaseAuth.getCurrentUser().getUid(), this);
-        }
-    }
-
-    private void validateStudent(BaseModel baseModel) {
+    private void validateUser(BaseModel baseModel) {
         hideProgressDialog();
         if (baseModel != null) {
-            Utility.saveUserRole(context, Constants.ROLE_STUDENT);
             openApp();
         } else {
-            displayRoleScreen();
+            createUser();
         }
     }
 
-    private void displayRoleScreen() {
-        signInButton.setVisibility(View.GONE);
-        buttonsLinear.setVisibility(View.VISIBLE);
-    }
-
-    private void createTeacher() {
-        Teacher teacher = new Teacher();
-        teacher.setName(firebaseAuth.getCurrentUser().getDisplayName());
-        DatabaseAccess.saveNewTeacher(teacher, firebaseAuth.getCurrentUser().getUid());
-        Utility.saveUserRole(context, Constants.ROLE_TEACHER);
-        openApp();
-    }
-
-    private void createStudent() {
-        Student student = new Student();
-        student.setName(firebaseAuth.getCurrentUser().getDisplayName());
-        DatabaseAccess.saveNewStudent(student, firebaseAuth.getCurrentUser().getUid());
-        Utility.saveUserRole(context, Constants.ROLE_STUDENT);
+    private void createUser() {
+        User user = new User();
+        user.setName(firebaseAuth.getCurrentUser().getDisplayName());
+        DatabaseAccess.saveNewUser(user, firebaseAuth.getCurrentUser().getUid());
         openApp();
     }
 

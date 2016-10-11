@@ -15,26 +15,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal" />
 
-    <LinearLayout
-        android:id="@+id/buttons_linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/teacher_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_teacher" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/student_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_student" />
-
-    </LinearLayout>
-
 </LinearLayout>

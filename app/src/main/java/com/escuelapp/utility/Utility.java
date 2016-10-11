@@ -22,15 +22,4 @@ public class Utility {
     public static void deleteUserUid(Context context) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().remove(Constants.USER_UID).commit();
     }
-
-    public static void saveUserRole(Context context, int role) {
-        if (role > 0) {
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(Constants.USER_ROLE, role).commit();
-        }
-    }
-
-    public static int getUserRole(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getInt(Constants.USER_ROLE, Constants.ROLE_NO_ROLE);
-    }
 }
