@@ -6,15 +6,12 @@ package com.escuelapp.utility;
 public class Constants {
 
     public static final String USER_UID = "user_uid";
-    public static final String USER_ROLE = "user_role";
+    public final static String NODE_USERS = "Users";
+    public final static String SEARCH_USER = "search_user";
 
-    public static final int ROLE_NO_ROLE = 0;
-    public static final int ROLE_TEACHER = 1;
-    public static final int ROLE_STUDENT = 2;
-
-    public final static String NODE_TEACHERS = "Teachers";
-    public final static String NODE_STUDENTS = "Students";
-
-    public final static String SEARCH_TEACHER = "search_teacher";
-    public final static String SEARCH_STUDENT = "search_student";
+    public final static int NUM_TABS = 4;
+    public final static int TAB_CREATE = 0;
+    public final static int TAB_ANSWER = 1;
+    public final static int TAB_PUBLIC = 2;
+    public final static int TAB_GROUPS = 3;
 }

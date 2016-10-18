@@ -3,7 +3,7 @@ package com.escuelapp.model;
 /**
  * Created by alan on 10/4/16.
  */
-public class Teacher extends BaseModel {
+public class User extends BaseModel {
 
     private String name;
 
