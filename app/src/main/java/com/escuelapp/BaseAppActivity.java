@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.escuelapp.view.CustomProgressDialog;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseAppActivity extends AppCompatActivity {
 
     public CustomProgressDialog progressDialog;
 

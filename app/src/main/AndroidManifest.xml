@@ -20,7 +20,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BaseActivity"></activity>
+        <activity
+            android:name=".BaseAppActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".GroupAdministratorActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".GroupSearchActivity"
+            android:launchMode="singleInstance" />
     </application>
 
 </manifest>
