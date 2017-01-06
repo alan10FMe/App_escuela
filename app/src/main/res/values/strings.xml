@@ -1,14 +1,37 @@
 <resources>
     <string name="app_name">EscuelApp</string>
     <string name="loading">Espere&#8230;</string>
-    <string name="button_teacher">Maestro</string>
-    <string name="button_student">Estudiante</string>
 
     <string name="tab_title_create">Crear</string>
     <string name="tab_title_answer">Contestar</string>
     <string name="tab_title_public">Publicos</string>
     <string name="tab_title_groups">Grupos</string>
 
+    <string name="group_text_group_name">Nombre del grupo</string>
+    <string name="group_text_participants">Participantes</string>
+    <string name="group_text_requesters">Solicitantes</string>
+    <string name="group_text_search_text">Email del usuario</string>
+    <string name="group_text_menu_share">Invitar amigos</string>
+    <string name="group_text_dialog_title">Crear grupo</string>
+    <string name="group_text_dialog_button_save">Crear</string>
+    <string name="group_text_dialog_button_cancel">Cancelar</string>
+    <string name="group_text_dialog_error">Ingresa un nombre para el grupo</string>
+    <string name="group_text_search_group">Email del creador</string>
+    <string name="group_text_look_groups">Busca un grupo para entrar</string>
+    <string name="group_text_created_groups">Tus grupos creados</string>
+    <string name="group_text_participant_groups">Grupos en los que participas</string>
+    <string name="group_text_created">Nuevo grupo creado</string>
+    <string name="group_text_menu_request">Solicitar</string>
+    <string name="group_text_search_created">Grupos disponibles</string>
+
+    <string name="invite_text_title">Invitar amigos</string>
+    <string name="invite_text_message">Invita a tus amigos para compartir examenes</string>
+    <string name="invite_button_email">Iniciar</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bottom_menu_created">Creados</string>
+    <string name="bottom_menu_participant">Participando</string>
+    <string name="text_accept_button">Aceptar</string>
 </resources>

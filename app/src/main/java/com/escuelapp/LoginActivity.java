@@ -30,7 +30,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseError;
 
-public class LoginActivity extends BaseActivity implements GoogleApiClient.OnConnectionFailedListener,
+public class LoginActivity extends BaseAppActivity implements GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener, DatabaseAccess.OnDatabaseResponse {
 
     private static final String TAG = "LoginActivity";
@@ -78,11 +78,7 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                     if (firebaseUser != null) {
                         runMethod = false;
-                        if (Utility.getUserUid(context) == null) {
-                            createOrReadUser(firebaseUser);
-                        } else {
-                            openApp();
-                        }
+                        createOrReadUser(firebaseUser);
                     } else {
                         Log.d(TAG, "onAuthStateChanged:signed_out");
                     }
@@ -144,6 +140,8 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
 
     private void openApp() {
         Utility.saveUserUid(context, firebaseAuth.getCurrentUser().getUid());
+        Utility.saveUserName(context, firebaseAuth.getCurrentUser().getDisplayName());
+        Utility.saveUserEmail(context, firebaseAuth.getCurrentUser().getEmail());
         startActivity(new Intent(context, MainActivity.class));
         finish();
     }
@@ -156,6 +154,8 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
     private void showErrorAuth() {
         Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show();
         Utility.deleteUserUid(context);
+        Utility.deleteUserName(context);
+        Utility.deleteUserEmail(context);
         runMethod = true;
     }
 
@@ -175,7 +175,7 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
     @Override
     public void onDatabaseResponse(BaseModel baseModel, String operationCode) {
         switch (operationCode) {
-            case Constants.SEARCH_USER:
+            case Constants.DB_ACTION_SEARCH_USER:
                 validateUser(baseModel);
                 break;
             default:
@@ -195,7 +195,9 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
     private void createUser() {
         User user = new User();
         user.setName(firebaseAuth.getCurrentUser().getDisplayName());
-        DatabaseAccess.saveNewUser(user, firebaseAuth.getCurrentUser().getUid());
+        user.setEmail(firebaseAuth.getCurrentUser().getEmail());
+        user.setUid(firebaseAuth.getCurrentUser().getUid());
+        DatabaseAccess.saveNewUser(user);
         openApp();
     }
 

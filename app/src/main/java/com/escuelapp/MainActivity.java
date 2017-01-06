@@ -1,27 +1,27 @@
 package com.escuelapp;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
 
 import com.escuelapp.adapter.PagerAdapter;
-import com.escuelapp.utility.Utility;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseAppActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private FragmentPagerAdapter pagerAdapter;
     private ViewPager viewPager;
+    private GoogleApiClient googleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializeView();
+//        initializeInvitation();
     }
 
     private void initializeView() {
@@ -29,5 +29,10 @@ public class MainActivity extends BaseActivity {
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         viewPager.setAdapter(pagerAdapter);
         ((TabLayout) findViewById(R.id.sliding_tabs)).setupWithViewPager(viewPager);
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
