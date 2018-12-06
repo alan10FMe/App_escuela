@@ -6,3 +6,4 @@ Features:
 - Create groups with specific topics
 - Manage groups
 - Invite and manage people in the groups
+- Post answers and questions in the groups
